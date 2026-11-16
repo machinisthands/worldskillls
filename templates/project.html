@@ -1,0 +1,48 @@
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol><li><a href="index.html">All projects</a></li><li aria-current="page">{{year}} · Test Project {{project}}</li></ol>
+</nav>
+<header class="project-head">
+  <hgroup>
+    <p class="eyebrow">WorldSkills {{year}} · {{host}}</p>
+    <h1>CNC Milling — Test Project {{project}}</h1>
+  </hgroup>
+  <div class="pickers" role="group" aria-label="Choose a project">
+    <label>Year <select class="nav-select">{{year_options}}</select></label>
+    <label>Project <select class="nav-select">{{project_options}}</select></label>
+  </div>
+</header>
+<section class="viewer-wrap" aria-labelledby="h-model">
+  <div class="viewer-head">
+    <h2 id="h-model" class="section-title">3D Model</h2>
+    <div class="viewer-tools" role="toolbar" aria-label="3D view controls">
+      <button type="button" id="btn-rotate" aria-pressed="true" title="Auto-rotate"><span aria-hidden="true">⟳</span>Rotate</button>
+      <button type="button" id="btn-flip" aria-pressed="false" title="Turn the part over to see the bottom side"><span aria-hidden="true">⇅</span><span id="flip-label">Show bottom</span></button>
+      <button type="button" id="btn-reset" title="Reset view"><span aria-hidden="true">⌖</span>Reset</button>
+    </div>
+  </div>
+  <div class="viewer" id="viewer" data-model="{{model}}">
+    <div class="viewer-status" id="viewer-status" role="status"><div class="bar"><span id="viewer-bar"></span></div><p id="viewer-msg">Loading 3D model…</p></div>
+  </div>
+  <p class="viewer-hint">Drag to rotate · Scroll or pinch to zoom · Right-drag or two fingers to pan</p>
+</section>
+<section aria-labelledby="h-drawing">
+  <h2 id="h-drawing" class="section-title">Engineering Drawing</h2>
+  <figure class="drawing"><img src="{{drawing}}" alt="Engineering drawing of WorldSkills {{year}} CNC Milling Test Project {{project}}" width="{{drawing_w}}" height="{{drawing_h}}" loading="lazy" decoding="async"></figure>
+</section>
+{{notes}}
+<section aria-labelledby="h-medals">
+  <h2 id="h-medals" class="section-title">Medallists · WorldSkills {{year}}</h2>
+  <ul class="medals">{{medals}}</ul>
+  <p class="medals-note">CNC Milling results from the official WorldSkills results. Equal scores share a medal, so some years have two golds or no bronze.</p>
+</section>
+<section aria-labelledby="h-downloads">
+  <h2 id="h-downloads" class="section-title">Downloads</h2>
+  <ul class="downloads">
+    <li><a class="dl" href="{{pdf}}" download="{{file}}.pdf"><span class="dl-badge">PDF</span><span class="dl-text"><b>Engineering drawing</b><small>PDF · {{pdf_size}}</small></span><span class="dl-arrow" aria-hidden="true">↓</span></a></li>
+    <li><a class="dl" href="{{glb}}" download="{{file}}.glb"><span class="dl-badge">3D</span><span class="dl-text"><b>3D model</b><small>GLB · {{glb_size}}</small></span><span class="dl-arrow" aria-hidden="true">↓</span></a></li>
+  </ul>
+  <p class="dl-note">The 3D model is a compressed glTF (.glb) file. It opens in Blender, the online <a href="https://gltf-viewer.donmccurdy.com/">glTF Viewer</a> and most 3D apps.</p>
+</section>
+<nav class="pager" aria-label="Previous and next project">
+{{pager}}
+</nav>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+{{base}}<link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+{{preload}}<link rel="stylesheet" href="css/style.css">
+<meta name="description" content="{{description}}">
+<link rel="canonical" href="{{url}}">
+<meta name="robots" content="{{robots}}">
+
+<meta property="og:title" content="{{title}}">
+<meta property="og:type" content="{{og_type}}">
+<meta property="og:url" content="{{url}}">
+<meta property="og:image" content="{{image}}">
+<meta property="og:image:alt" content="{{image_alt}}">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="400">
+<meta property="og:description" content="{{description}}">
+<meta property="og:site_name" content="Machinist Hands">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#151416" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
+<script type="application/ld+json">{{jsonld}}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <a href="index.html" class="brand"><img src="img/machinistHands.webp" alt="Machinist Hands" width="190" height="51"></a>
+  <p class="tagline">For those who operate machine tools</p>
+</header>
+<main id="main" class="page">
+{{content}}
+</main>
+<footer class="site-footer">
+  <p>Test projects are the property of WorldSkills International and are shared here for training and educational use.
+    <a href="https://machinisthands.blogspot.com/p/disclaimer.html">Disclaimer</a> ·
+    <a href="https://machinisthands.blogspot.com/p/privacy-and-policy-machinist-hands.html">Privacy Policy</a></p>
+  <p>Copyright © <span id="year-now">{{build_year}}</span> <a href="https://machinisthands.blogspot.com/">Machinist Hands</a></p>
+</footer>
+{{scripts}}
+</body>
+</html>

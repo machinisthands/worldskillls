@@ -1,66 +1,16 @@
-//Variables for setup
+/* Machinist Hands — small script used on every page (js/app.js, as in HTML5 Boilerplate). */
+(function () {
+  'use strict';
 
-let container;
-let camera;
-let renderer;
-let scene;
-let work;
+  // Footer year follows the visitor's clock (the page already shows the build year without JavaScript).
+  document.getElementById('year-now').textContent = new Date().getFullYear();
 
-function init() {
-  container = document.querySelector(".scene");
-
- 
-
-  //Create scene
-  scene = new THREE.Scene();
-
-  const fov = 35;
-  const aspect = container.clientWidth / container.clientHeight;
-  const near = 0.1;
-  const far = 1000;
-
-  //Camera setup
-  camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  camera.position.set(5, 4, 400);
-
-  const ambient = new THREE.AmbientLight(0x404040, 2);
-  scene.add(ambient);
-
-  const light = new THREE.DirectionalLight(0xffffff, 2);
-  light.position.set(20, 20, 50);
-  scene.add(light);
-
-  //Renderer
-  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(container.clientWidth, container.clientHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-
-  container.appendChild(renderer.domElement);
-
-  //Load Model
-  let loader = new THREE.GLTFLoader();
-  loader.load("3D Model.gltf", function(gltf) {
-    scene.add(gltf.scene);
-    work = gltf.scene.children[0];
-    animate();
+  // Year / project pickers on project pages: go to the chosen page
+  document.querySelectorAll('.nav-select').forEach((s) => {
+    s.addEventListener('change', () => { location.href = s.value; });
   });
-}
 
-function animate() {
-  requestAnimationFrame(animate);
-  work.rotation.z += 0.003;
-  work.rotation.y += 0.003;
-
-  renderer.render(scene, camera);
-}
-
-init();
-
-function onWindowResize() {
-  camera.aspect = container.clientWidth / container.clientHeight;
-  camera.updateProjectionMatrix();
-
-  renderer.setSize(container.clientWidth, container.clientHeight);
-}
-
-window.addEventListener("resize", onWindowResize);
+  // Old links such as index.html#tp-2019-1 → the project's own page
+  const old = location.hash.match(/^#tp-(\d{4})-(\d+)$/);
+  if (old) location.replace(`worldskills-${old[1]}-test-project-${old[2]}.html`);
+})();
