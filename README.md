@@ -59,7 +59,8 @@ projects/2019-1/         ← one folder per project
     drawing.webp         ← drawing shown on the page
     drawing.pdf          ← drawing download
     card.webp            ← home-page picture: part top + bottom (800×400)
-    card.jpg             ← same picture as JPG, used when the page is shared on social media
+    card-400.webp        ← same picture, 400×200, for small or 1x screens
+    og.jpg               ← 1200×628 picture used when the page is shared (LinkedIn, WhatsApp, Facebook, X)
     top.jpg              ← small picture for Previous/Next
 templates/, data/, notes/, scripts/  ← what the pages are built from (see above)
 ```
@@ -86,7 +87,7 @@ After it is live, add the site in [Google Search Console](https://search.google.
    `{"dir": "2024-1", "year": 2024, "project": 1, "host": "Lyon, France", "pdfKB": 150, "glbKB": 200, "drawingW": 1500, "drawingH": 1060}`
    (`pdfKB`/`glbKB` are the file sizes shown on the download buttons; `drawingW`/`drawingH` are the drawing image's pixel size.)
 4. Run `python scripts/build.py`.
-5. Make the pictures `card.webp`, `card.jpg` and `top.jpg` with `scripts/render_cards.py` (instructions at the top of that file).
+5. Make the pictures `card.webp`, `card-400.webp`, `og.jpg` and `top.jpg` with `scripts/render_cards.py` (instructions at the top of that file).
 
 ## Credits
 
