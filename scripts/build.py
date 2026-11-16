@@ -21,7 +21,7 @@ BLOG_URL = "https://machinisthands.blogspot.com/"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = sys.argv[1] if len(sys.argv) > 1 else ROOT  # optional: build into another folder
 PREVIEW = "--preview" in sys.argv                 # used only for the claude.ai preview copy
-IMG = "jpg" if "--jpg" in sys.argv else "webp"     # page images (card, drawing) are WebP; card.jpg is kept for social previews
+IMG = "jpg" if "--jpg" in sys.argv else "webp"     # page images (card, drawing) are WebP; og.jpg is for social previews
 
 esc = html.escape
 
@@ -165,14 +165,14 @@ home_desc = ("All WorldSkills CNC Milling test projects from 2007 to 2019: rotat
 home_ld = {"@context": "https://schema.org", "@graph": [organization, website, {
     "@type": "CollectionPage", "@id": SITE_URL, "url": SITE_URL, "name": home_title, "description": home_desc,
     "isPartOf": {"@id": website["@id"]}, "inLanguage": "en",
-    "primaryImageOfPage": SITE_URL + asset(projects[0], "card.jpg"),
+    "primaryImageOfPage": SITE_URL + asset(projects[0], "og.jpg"),
     "mainEntity": {"@type": "ItemList", "numberOfItems": len(projects), "itemListElement": [
         {"@type": "ListItem", "position": i + 1, "url": SITE_URL + page_name(p),
          "name": f"WorldSkills {label(p)}"} for i, p in enumerate(projects)]}}]}
 
 write("index.html", fill(
     layout, title=esc(home_title), description=esc(home_desc), url=SITE_URL, og_type="website",
-    image=SITE_URL + asset(projects[0], "card.jpg"), image_alt="3D models of WorldSkills CNC Milling test projects",
+    image=SITE_URL + asset(projects[0], "og.jpg"), image_alt="3D models of WorldSkills CNC Milling test projects",
     preload=(f'<link rel="preload" href="{asset(projects[0], "card." + IMG)}" as="image" fetchpriority="high"'
              + (f' imagesrcset="{card_srcset(projects[0])}" imagesizes="{CARD_SIZES}"' if card_srcset(projects[0]) else "")
              + '>\n'),
@@ -209,7 +209,7 @@ for i, p in enumerate(projects):
     ld = {"@context": "https://schema.org", "@graph": [organization, website,
         {"@type": "WebPage", "@id": url, "url": url, "name": title, "description": desc, "inLanguage": "en",
          "isPartOf": {"@id": website["@id"]}, "breadcrumb": {"@id": url + "#breadcrumb"},
-         "primaryImageOfPage": SITE_URL + asset(p, "card.jpg"), "mainEntity": {"@id": url + "#project"}},
+         "primaryImageOfPage": SITE_URL + asset(p, "og.jpg"), "mainEntity": {"@id": url + "#project"}},
         {"@type": "BreadcrumbList", "@id": url + "#breadcrumb", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "WorldSkills CNC Milling Test Projects", "item": SITE_URL},
             {"@type": "ListItem", "position": 2, "name": label(p), "item": url}]},
@@ -217,7 +217,7 @@ for i, p in enumerate(projects):
          "name": f"WorldSkills {p['year']} CNC Milling Test Project {p['project']}",
          "description": desc, "learningResourceType": "Test project", "educationalLevel": "Competition",
          "about": ["CNC milling", "Machining", "Engineering drawing"], "inLanguage": "en",
-         "image": [SITE_URL + asset(p, "card.jpg"), SITE_URL + asset(p, "drawing.webp")],
+         "image": [SITE_URL + asset(p, "og.jpg"), SITE_URL + asset(p, "drawing.webp")],
          "copyrightHolder": {"@type": "Organization", "name": "WorldSkills International"},
          "contentLocation": {"@type": "Place", "name": p["host"]}, "temporalCoverage": str(p["year"]),
          "publisher": {"@id": organization["@id"]},
@@ -232,7 +232,7 @@ for i, p in enumerate(projects):
                '<script src="js/viewer.js" defer></script>')
     write(page_name(p), fill(
         layout, title=esc(title), description=esc(desc), url=url, og_type="article",
-        image=SITE_URL + asset(p, "card.jpg"), image_alt=f"3D model of WorldSkills {label(p)}, top and bottom",
+        image=SITE_URL + asset(p, "og.jpg"), image_alt=f"3D model of WorldSkills {label(p)}, top and bottom",
         preload="", jsonld=jsonld(ld), build_year=build_year, scripts=scripts, base="",
         robots="index, follow, max-image-preview:large",
         content=fill(project_tpl, year=p["year"], project=p["project"], host=esc(p["host"]),
@@ -248,7 +248,7 @@ if not PREVIEW:
     nf_desc = "This page does not exist. See all WorldSkills CNC Milling test projects."
     write("404.html", fill(
         layout, title="Page not found | Machinist Hands", description=nf_desc, url=SITE_URL, og_type="website",
-        image=SITE_URL + asset(projects[0], "card.jpg"), image_alt="WorldSkills CNC Milling test projects",
+        image=SITE_URL + asset(projects[0], "og.jpg"), image_alt="WorldSkills CNC Milling test projects",
         base=f'<base href="{SITE_URL}">\n', preload="", robots="noindex", build_year=build_year,
         jsonld=jsonld({"@context": "https://schema.org", "@graph": [organization, website]}), scripts=scripts_common,
         content='<section class="hero not-found" aria-labelledby="page-title">\n'
