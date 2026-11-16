@@ -24,7 +24,7 @@ After changing a template or the project list, run:
 python scripts/build.py
 ```
 
-It rewrites `index.html`, the 23 `worldskills-<year>-test-project-<n>.html` pages, `404.html`, `sitemap.xml` and `robots.txt`. Don't edit those generated files directly, because the next build overwrites them.
+It rewrites `index.html`, the 23 `worldskills-<year>-test-project-<n>.html` pages, `404.html`, `sitemap.xml`, `robots.txt` and the `<year> Project <n>/index.html` pages, which send the addresses of the first version of the site (for example `2007 Project 1/index.html`) to the new pages. Don't edit those generated files directly, because the next build overwrites them.
 
 ## Machining notes
 

@@ -13,4 +13,8 @@
   // Old links such as index.html#tp-2019-1 → the project's own page
   const old = location.hash.match(/^#tp-(\d{4})-(\d+)$/);
   if (old) location.replace(`worldskills-${old[1]}-test-project-${old[2]}.html`);
+
+  // On the 404 page: old files such as "2007 Project 1/All.zip" → that project's page
+  const oldDir = decodeURIComponent(location.pathname).match(/\/(\d{4}) Project (\d+)\//);
+  if (oldDir) location.replace(`worldskills-${oldDir[1]}-test-project-${oldDir[2]}.html`);
 })();
