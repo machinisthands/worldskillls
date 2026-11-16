@@ -1,0 +1,232 @@
+[
+ {
+  "dir": "2007-1",
+  "year": 2007,
+  "project": 1,
+  "host": "Shizuoka, Japan",
+  "pdfKB": 218,
+  "glbKB": 150,
+  "drawingW": 1500,
+  "drawingH": 1060
+ },
+ {
+  "dir": "2007-2",
+  "year": 2007,
+  "project": 2,
+  "host": "Shizuoka, Japan",
+  "pdfKB": 87,
+  "glbKB": 105,
+  "drawingW": 1500,
+  "drawingH": 1063
+ },
+ {
+  "dir": "2007-3",
+  "year": 2007,
+  "project": 3,
+  "host": "Shizuoka, Japan",
+  "pdfKB": 167,
+  "glbKB": 99,
+  "drawingW": 1500,
+  "drawingH": 1060
+ },
+ {
+  "dir": "2007-4",
+  "year": 2007,
+  "project": 4,
+  "host": "Shizuoka, Japan",
+  "pdfKB": 168,
+  "glbKB": 137,
+  "drawingW": 1500,
+  "drawingH": 1062
+ },
+ {
+  "dir": "2009-1",
+  "year": 2009,
+  "project": 1,
+  "host": "Calgary, Canada",
+  "pdfKB": 270,
+  "glbKB": 182,
+  "drawingW": 1500,
+  "drawingH": 1060
+ },
+ {
+  "dir": "2009-2",
+  "year": 2009,
+  "project": 2,
+  "host": "Calgary, Canada",
+  "pdfKB": 137,
+  "glbKB": 137,
+  "drawingW": 1500,
+  "drawingH": 1053
+ },
+ {
+  "dir": "2009-3",
+  "year": 2009,
+  "project": 3,
+  "host": "Calgary, Canada",
+  "pdfKB": 153,
+  "glbKB": 78,
+  "drawingW": 1500,
+  "drawingH": 1060
+ },
+ {
+  "dir": "2009-4",
+  "year": 2009,
+  "project": 4,
+  "host": "Calgary, Canada",
+  "pdfKB": 406,
+  "glbKB": 152,
+  "drawingW": 1500,
+  "drawingH": 1060
+ },
+ {
+  "dir": "2011-1",
+  "year": 2011,
+  "project": 1,
+  "host": "London, UK",
+  "pdfKB": 135,
+  "glbKB": 187,
+  "drawingW": 1500,
+  "drawingH": 1061
+ },
+ {
+  "dir": "2011-2",
+  "year": 2011,
+  "project": 2,
+  "host": "London, UK",
+  "pdfKB": 89,
+  "glbKB": 182,
+  "drawingW": 1500,
+  "drawingH": 1060
+ },
+ {
+  "dir": "2011-3",
+  "year": 2011,
+  "project": 3,
+  "host": "London, UK",
+  "pdfKB": 199,
+  "glbKB": 263,
+  "drawingW": 1500,
+  "drawingH": 1060
+ },
+ {
+  "dir": "2013-1",
+  "year": 2013,
+  "project": 1,
+  "host": "Leipzig, Germany",
+  "pdfKB": 270,
+  "glbKB": 101,
+  "drawingW": 1500,
+  "drawingH": 1061
+ },
+ {
+  "dir": "2013-2",
+  "year": 2013,
+  "project": 2,
+  "host": "Leipzig, Germany",
+  "pdfKB": 155,
+  "glbKB": 387,
+  "drawingW": 1500,
+  "drawingH": 1061
+ },
+ {
+  "dir": "2013-3",
+  "year": 2013,
+  "project": 3,
+  "host": "Leipzig, Germany",
+  "pdfKB": 273,
+  "glbKB": 125,
+  "drawingW": 1500,
+  "drawingH": 1061
+ },
+ {
+  "dir": "2015-1",
+  "year": 2015,
+  "project": 1,
+  "host": "São Paulo, Brazil",
+  "pdfKB": 107,
+  "glbKB": 107,
+  "drawingW": 1500,
+  "drawingH": 1054
+ },
+ {
+  "dir": "2015-2",
+  "year": 2015,
+  "project": 2,
+  "host": "São Paulo, Brazil",
+  "pdfKB": 125,
+  "glbKB": 192,
+  "drawingW": 1500,
+  "drawingH": 1060
+ },
+ {
+  "dir": "2015-3",
+  "year": 2015,
+  "project": 3,
+  "host": "São Paulo, Brazil",
+  "pdfKB": 130,
+  "glbKB": 246,
+  "drawingW": 1500,
+  "drawingH": 1054
+ },
+ {
+  "dir": "2017-1",
+  "year": 2017,
+  "project": 1,
+  "host": "Abu Dhabi, UAE",
+  "pdfKB": 963,
+  "glbKB": 79,
+  "drawingW": 1500,
+  "drawingH": 1059
+ },
+ {
+  "dir": "2017-2",
+  "year": 2017,
+  "project": 2,
+  "host": "Abu Dhabi, UAE",
+  "pdfKB": 979,
+  "glbKB": 181,
+  "drawingW": 1500,
+  "drawingH": 1059
+ },
+ {
+  "dir": "2017-3",
+  "year": 2017,
+  "project": 3,
+  "host": "Abu Dhabi, UAE",
+  "pdfKB": 1023,
+  "glbKB": 30,
+  "drawingW": 1500,
+  "drawingH": 1059
+ },
+ {
+  "dir": "2019-1",
+  "year": 2019,
+  "project": 1,
+  "host": "Kazan, Russia",
+  "pdfKB": 127,
+  "glbKB": 116,
+  "drawingW": 1500,
+  "drawingH": 1048
+ },
+ {
+  "dir": "2019-2",
+  "year": 2019,
+  "project": 2,
+  "host": "Kazan, Russia",
+  "pdfKB": 167,
+  "glbKB": 395,
+  "drawingW": 1500,
+  "drawingH": 1048
+ },
+ {
+  "dir": "2019-3",
+  "year": 2019,
+  "project": 3,
+  "host": "Kazan, Russia",
+  "pdfKB": 156,
+  "glbKB": 183,
+  "drawingW": 1500,
+  "drawingH": 1048
+ }
+]
