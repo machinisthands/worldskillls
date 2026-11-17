@@ -24,11 +24,21 @@
     <div class="viewer-status" id="viewer-status" role="status"><div class="bar"><span id="viewer-bar"></span></div><p id="viewer-msg">Loading 3D model…</p></div>
   </div>
   <p class="viewer-hint">Drag to rotate · Scroll or pinch to zoom · Right-drag or two fingers to pan</p>
+  <div class="engage" data-page="{{page_id}}">
+    <div class="eng-stats">
+      <span class="eng-views" title="Views" hidden><span aria-hidden="true">👁</span> <b data-count="views"></b> <span class="eng-label">views</span></span>
+      <button type="button" class="eng-btn" data-vote="likes" aria-pressed="false" aria-label="Like"><span aria-hidden="true">👍</span> <b data-count="likes"></b></button>
+      <button type="button" class="eng-btn" data-vote="dislikes" aria-pressed="false" aria-label="Dislike"><span aria-hidden="true">👎</span> <b data-count="dislikes"></b></button>
+    </div>
+    {{share}}
+    <p class="share-status" role="status"></p>
+  </div>
 </section>
 <section aria-labelledby="h-drawing">
   <h2 id="h-drawing" class="section-title">Engineering Drawing</h2>
   <figure class="drawing"><img src="{{drawing}}" alt="Engineering drawing of WorldSkills {{year}} CNC Milling Test Project {{project}}" width="{{drawing_w}}" height="{{drawing_h}}" loading="lazy" decoding="async"></figure>
 </section>
+{{behind}}
 {{notes}}
 <section aria-labelledby="h-medals">
   <h2 id="h-medals" class="section-title">Medallists · WorldSkills {{year}}</h2>
