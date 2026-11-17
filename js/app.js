@@ -47,6 +47,7 @@
     const store = {
       get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
       set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+      del(k) { try { localStorage.removeItem(k); } catch (e) {} },
       sget(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } },
       sset(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} },
     };
@@ -66,23 +67,24 @@
         if (l) l.textContent = counts.views === 1 ? 'view' : 'views';
       }
     };
-    const bump = (field) => fetch(`${base}:commit?key=${FIREBASE.apiKey}`, {
+    // Send +1 / -1 changes, e.g. { likes: 1, dislikes: -1 }, in one request
+    const send = (changes) => fetch(`${base}:commit?key=${FIREBASE.apiKey}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ writes: [{ transform: {
         document: `projects/${FIREBASE.projectId}/databases/(default)/documents/pages/${page}`,
-        fieldTransforms: [{ fieldPath: field, increment: { integerValue: '1' } }],
+        fieldTransforms: Object.entries(changes).map(([field, n]) => ({ fieldPath: field, increment: { integerValue: String(n) } })),
       } }] }),
     }).then((r) => { if (!r.ok) throw new Error(r.status); });
 
-    // Which button this browser already pressed
-    const voted = store.get(`vote:${page}`);
+    // This browser's vote: 'likes', 'dislikes' or none. Tap the same thumb again to take it back,
+    // or the other thumb to change it. (v2: votes saved before the counters went live are ignored.)
+    const KEY = `vote-v2:${page}`;
+    let vote = store.get(KEY);
+    let busy = false;
     const btns = engage.querySelectorAll('[data-vote]');
-    const mark = (v) => btns.forEach((b) => {
-      b.setAttribute('aria-pressed', String(b.dataset.vote === v));
-      b.disabled = Boolean(v);
-    });
-    if (voted) mark(voted);
+    const mark = () => btns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.vote === vote)));
+    mark();
 
     if (on) {
       fetch(`${base}/pages/${page}?key=${FIREBASE.apiKey}`)
@@ -93,7 +95,7 @@
           if (!store.sget(`viewed:${page}`)) {
             store.sset(`viewed:${page}`, '1');
             counts.views += 1;
-            bump('views').catch(() => {});
+            send({ views: 1 }).catch(() => {});
           }
           show();
         })
@@ -101,13 +103,25 @@
     }
 
     btns.forEach((b) => b.addEventListener('click', () => {
-      if (store.get(`vote:${page}`)) return;
+      if (busy) return;
       const v = b.dataset.vote;
-      store.set(`vote:${page}`, v);
-      mark(v);
+      const before = vote;
+      const changes = {};
+      if (before === v) { changes[v] = -1; vote = null; }          // take the vote back
+      else { changes[v] = 1; if (before) changes[before] = -1; vote = v; } // new vote, or switch
+      const apply = (sign) => Object.entries(changes).forEach(([k, n]) => { counts[k] = Math.max(0, counts[k] + sign * n); });
+      apply(1); mark(); show();
+      if (vote) store.set(KEY, vote); else store.del(KEY);
+      if (status) status.textContent = '';
       if (!on) return;
-      counts[v] += 1; show();
-      bump(v).catch(() => { if (status) status.textContent = 'Could not save your vote. Please try again later.'; });
+      busy = true;
+      send(changes)
+        .catch(() => {
+          apply(-1); vote = before; mark(); show();
+          if (before) store.set(KEY, before); else store.del(KEY);
+          if (status) status.textContent = 'Could not save your vote. Please try again.';
+        })
+        .finally(() => { busy = false; });
     }));
   }
 })();

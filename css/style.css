@@ -299,7 +299,6 @@ h1 { font-size: clamp(2.1rem, 5vw, 3.2rem); }
 .eng-btn[aria-pressed="true"] { --vote: #FACC15; border-color: var(--vote); background: rgba(250, 204, 21, .12); color: var(--vote); }
 .eng-btn[aria-pressed="true"] .eng-ico { fill: var(--vote); }
 @media (prefers-color-scheme: light) { .eng-btn[aria-pressed="true"] { --vote: #B7791F; background: rgba(183, 121, 31, .1); } }
-.eng-btn:disabled { cursor: default; }
 .eng-btn b:empty { display: none; }
 
 /* Anchor links (e.g. "Read the full story") land below the sticky header */
