@@ -112,10 +112,21 @@ def jsonld(data):
     return json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 
 
+def inline_css():
+    """css/style.css, minified, for a <style> tag in every page: one less request that blocks the first paint.
+    (GitHub Pages caches files for only 10 minutes, so a separate CSS file gains little from the browser cache.)"""
+    css = read("css", "style.css").replace("url(../fonts/", "url(fonts/")
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    css = re.sub(r"\s+", " ", css)
+    css = re.sub(r"\s*([{};,])\s*", r"\1", css)
+    css = re.sub(r":\s+", ":", css).replace(";}", "}")
+    return css.strip()
+
+
 projects = json.loads(read("data", "projects.json"))
 years = sorted({p["year"] for p in projects})
 medallists = json.loads(read("data", "medallists.json"))
-layout = read("templates", "layout.html")
+layout = read("templates", "layout.html").replace("{{css}}", "<style>" + inline_css() + "</style>")
 build_year = datetime.date.today().year
 organization = {"@type": "Organization", "@id": BLOG_URL + "#org", "name": SITE_NAME, "url": BLOG_URL,
                 "logo": SITE_URL + "icon-512.png"}
