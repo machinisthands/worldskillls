@@ -108,6 +108,36 @@ def medals_html(year):
                    for m, name, country in rows)
 
 
+SHARE_ICON = ('<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+              'stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/>'
+              '<circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>')
+
+
+def share_html(url, title):
+    """One Share button: the phone's own share menu, or "copy link" on computers (see js/app.js)."""
+    return (f'<div class="share-row" data-url="{esc(url)}" data-title="{esc(title)}">'
+            f'<button type="button" class="share-btn">{SHARE_ICON} Share</button></div>')
+
+
+def behind_html(p):
+    """"Behind this model": the A3 photocopy I modelled the part from (projects/<dir>/a3.webp), if there is one."""
+    if "a3H" not in p:
+        return ""
+    pencil = (", and you can see a few of my pencil notes on it, where the drawing made me stop and check"
+              if p.get("a3Pencil") else "")
+    big, small = asset(p, "a3.webp"), asset(p, "a3-800.webp")
+    return ('<section class="behind" aria-labelledby="h-behind">\n'
+            '  <h2 id="h-behind" class="section-title">Behind this model</h2>\n'
+            '  <p>I modelled this part in Siemens NX during the 2020–2021 lockdown, working from this A3 photocopy '
+            f'of the drawing. I still have it{pencil}.</p>\n'
+            f'  <figure class="a3"><a href="{big}"><img src="{small}" srcset="{small} 800w, {big} {p["a3W"]}w" '
+            'sizes="(min-width: 760px) 700px, calc(100vw - 32px)" '
+            f'alt="Photo of my A3 photocopy of the WorldSkills {p["year"]} Test Project {p["project"]} drawing, '
+            f'with pencil and eraser" width="{p["a3W"]}" height="{p["a3H"]}" loading="lazy" decoding="async"></a>\n'
+            '    <figcaption>The A3 copy I worked from · tap to enlarge</figcaption></figure>\n'
+            '  <p><a href="index.html#story">Read the full story</a></p>\n</section>')
+
+
 def jsonld(data):
     return json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 
@@ -190,7 +220,8 @@ write("index.html", fill(
     jsonld=jsonld(home_ld), build_year=build_year, base="", robots="index, follow, max-image-preview:large",
     scripts=scripts_common,
     content=fill(read("templates", "home.html"), first_year=years[0], last_year=years[-1],
-                 years="\n".join(year_blocks))))
+                 years="\n".join(year_blocks),
+                 share=share_html(SITE_URL, f"WorldSkills CNC Milling test projects {years[0]}–{years[-1]} in 3D"))))
 
 # ---------- Project pages ----------
 project_tpl = read("templates", "project.html")
@@ -228,13 +259,15 @@ for i, p in enumerate(projects):
          "name": f"WorldSkills {p['year']} CNC Milling Test Project {p['project']}",
          "description": desc, "learningResourceType": "Test project", "educationalLevel": "Competition",
          "about": ["CNC milling", "Machining", "Engineering drawing"], "inLanguage": "en",
-         "image": [SITE_URL + asset(p, "og.jpg"), SITE_URL + asset(p, "drawing.webp")],
+         "image": [SITE_URL + asset(p, "og.jpg"), SITE_URL + asset(p, "drawing.webp")]
+                  + ([SITE_URL + asset(p, "a3.webp")] if "a3H" in p else []),
          "copyrightHolder": {"@type": "Organization", "name": "WorldSkills International"},
          "contentLocation": {"@type": "Place", "name": p["host"]}, "temporalCoverage": str(p["year"]),
          "publisher": {"@id": organization["@id"]},
          "hasPart": [
              {"@type": "3DModel", "name": f"{label(p)} 3D model", "contentUrl": SITE_URL + asset(p, "model.glb"),
-              "encodingFormat": "model/gltf-binary", "contentSize": f"{p['glbKB']} KB"},
+              "encodingFormat": "model/gltf-binary", "contentSize": f"{p['glbKB']} KB",
+              "creator": {"@id": organization["@id"]}},
              {"@type": "DigitalDocument", "name": f"{label(p)} engineering drawing (PDF)",
               "url": SITE_URL + asset(p, "drawing.pdf"), "encodingFormat": "application/pdf"}]}]}
 
@@ -251,7 +284,9 @@ for i, p in enumerate(projects):
                      drawing=asset(p, "drawing." + IMG), drawing_w=p["drawingW"], drawing_h=p["drawingH"],
                      pdf=asset(p, "drawing.pdf"), glb=asset(p, "model.glb"), file=file,
                      pdf_size=size(p["pdfKB"]), glb_size=size(p["glbKB"]), pager="\n".join(pager),
-                     notes=notes_html(p), medals=medals_html(p["year"]))))
+                     notes=notes_html(p), medals=medals_html(p["year"]), behind=behind_html(p),
+                     page_id=page_name(p)[:-5],
+                     share=share_html(url, f"WorldSkills {p['year']} CNC Milling Test Project {p['project']} in 3D"))))
 
 # ---------- 404 page (GitHub Pages shows 404.html for any missing address) ----------
 # <base> makes its links and files work whatever address the visitor mistyped.

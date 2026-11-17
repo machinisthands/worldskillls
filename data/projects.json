@@ -7,7 +7,9 @@
   "pdfKB": 218,
   "glbKB": 150,
   "drawingW": 1500,
-  "drawingH": 1060
+  "drawingH": 1060,
+  "a3W": 1600,
+  "a3H": 1247
  },
  {
   "dir": "2007-2",
@@ -17,7 +19,9 @@
   "pdfKB": 87,
   "glbKB": 105,
   "drawingW": 1500,
-  "drawingH": 1063
+  "drawingH": 1063,
+  "a3W": 1600,
+  "a3H": 1230
  },
  {
   "dir": "2007-3",
@@ -27,7 +31,9 @@
   "pdfKB": 167,
   "glbKB": 99,
   "drawingW": 1500,
-  "drawingH": 1060
+  "drawingH": 1060,
+  "a3W": 1600,
+  "a3H": 1243
  },
  {
   "dir": "2007-4",
@@ -37,7 +43,9 @@
   "pdfKB": 168,
   "glbKB": 137,
   "drawingW": 1500,
-  "drawingH": 1062
+  "drawingH": 1062,
+  "a3W": 1600,
+  "a3H": 1256
  },
  {
   "dir": "2009-1",
@@ -47,7 +55,10 @@
   "pdfKB": 270,
   "glbKB": 182,
   "drawingW": 1500,
-  "drawingH": 1060
+  "drawingH": 1060,
+  "a3W": 1600,
+  "a3H": 1246,
+  "a3Pencil": true
  },
  {
   "dir": "2009-2",
@@ -57,7 +68,10 @@
   "pdfKB": 137,
   "glbKB": 137,
   "drawingW": 1500,
-  "drawingH": 1053
+  "drawingH": 1053,
+  "a3W": 1600,
+  "a3H": 1220,
+  "a3Pencil": true
  },
  {
   "dir": "2009-3",
@@ -67,7 +81,9 @@
   "pdfKB": 153,
   "glbKB": 78,
   "drawingW": 1500,
-  "drawingH": 1060
+  "drawingH": 1060,
+  "a3W": 1600,
+  "a3H": 1206
  },
  {
   "dir": "2009-4",
@@ -77,7 +93,9 @@
   "pdfKB": 406,
   "glbKB": 152,
   "drawingW": 1500,
-  "drawingH": 1060
+  "drawingH": 1060,
+  "a3W": 1600,
+  "a3H": 1336
  },
  {
   "dir": "2011-1",
@@ -87,7 +105,9 @@
   "pdfKB": 135,
   "glbKB": 187,
   "drawingW": 1500,
-  "drawingH": 1061
+  "drawingH": 1061,
+  "a3W": 1600,
+  "a3H": 1196
  },
  {
   "dir": "2011-2",
@@ -97,7 +117,9 @@
   "pdfKB": 89,
   "glbKB": 182,
   "drawingW": 1500,
-  "drawingH": 1060
+  "drawingH": 1060,
+  "a3W": 1600,
+  "a3H": 1204
  },
  {
   "dir": "2011-3",
@@ -107,7 +129,9 @@
   "pdfKB": 199,
   "glbKB": 263,
   "drawingW": 1500,
-  "drawingH": 1060
+  "drawingH": 1060,
+  "a3W": 1600,
+  "a3H": 1203
  },
  {
   "dir": "2013-1",
@@ -117,7 +141,10 @@
   "pdfKB": 270,
   "glbKB": 101,
   "drawingW": 1500,
-  "drawingH": 1061
+  "drawingH": 1061,
+  "a3W": 1600,
+  "a3H": 1202,
+  "a3Pencil": true
  },
  {
   "dir": "2013-2",
@@ -127,7 +154,10 @@
   "pdfKB": 155,
   "glbKB": 387,
   "drawingW": 1500,
-  "drawingH": 1061
+  "drawingH": 1061,
+  "a3W": 1600,
+  "a3H": 1200,
+  "a3Pencil": true
  },
  {
   "dir": "2013-3",
@@ -137,7 +167,10 @@
   "pdfKB": 273,
   "glbKB": 125,
   "drawingW": 1500,
-  "drawingH": 1061
+  "drawingH": 1061,
+  "a3W": 1600,
+  "a3H": 1204,
+  "a3Pencil": true
  },
  {
   "dir": "2015-1",
@@ -147,7 +180,9 @@
   "pdfKB": 107,
   "glbKB": 107,
   "drawingW": 1500,
-  "drawingH": 1054
+  "drawingH": 1054,
+  "a3W": 1600,
+  "a3H": 1192
  },
  {
   "dir": "2015-2",
@@ -157,7 +192,10 @@
   "pdfKB": 125,
   "glbKB": 192,
   "drawingW": 1500,
-  "drawingH": 1060
+  "drawingH": 1060,
+  "a3W": 1600,
+  "a3H": 1234,
+  "a3Pencil": true
  },
  {
   "dir": "2015-3",
@@ -167,7 +205,9 @@
   "pdfKB": 130,
   "glbKB": 246,
   "drawingW": 1500,
-  "drawingH": 1054
+  "drawingH": 1054,
+  "a3W": 1600,
+  "a3H": 1285
  },
  {
   "dir": "2017-1",
@@ -177,7 +217,9 @@
   "pdfKB": 963,
   "glbKB": 79,
   "drawingW": 1500,
-  "drawingH": 1059
+  "drawingH": 1059,
+  "a3W": 1600,
+  "a3H": 1239
  },
  {
   "dir": "2017-2",
@@ -187,7 +229,9 @@
   "pdfKB": 979,
   "glbKB": 181,
   "drawingW": 1500,
-  "drawingH": 1059
+  "drawingH": 1059,
+  "a3W": 1600,
+  "a3H": 1238
  },
  {
   "dir": "2017-3",
@@ -197,7 +241,10 @@
   "pdfKB": 1023,
   "glbKB": 30,
   "drawingW": 1500,
-  "drawingH": 1059
+  "drawingH": 1059,
+  "a3W": 1600,
+  "a3H": 1221,
+  "a3Pencil": true
  },
  {
   "dir": "2019-1",
@@ -207,7 +254,9 @@
   "pdfKB": 127,
   "glbKB": 116,
   "drawingW": 1500,
-  "drawingH": 1048
+  "drawingH": 1048,
+  "a3W": 1600,
+  "a3H": 1206
  },
  {
   "dir": "2019-2",
@@ -217,7 +266,9 @@
   "pdfKB": 167,
   "glbKB": 395,
   "drawingW": 1500,
-  "drawingH": 1048
+  "drawingH": 1048,
+  "a3W": 1600,
+  "a3H": 1234
  },
  {
   "dir": "2019-3",
@@ -227,6 +278,8 @@
   "pdfKB": 156,
   "glbKB": 183,
   "drawingW": 1500,
-  "drawingH": 1048
+  "drawingH": 1048,
+  "a3W": 1600,
+  "a3H": 1257
  }
 ]

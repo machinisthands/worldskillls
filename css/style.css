@@ -249,3 +249,54 @@ h1 { font-size: clamp(2.1rem, 5vw, 3.2rem); }
   .drawing, .card { border: 0; break-inside: avoid; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; }
 }
+
+/* ---- Story: "How this site came to be" (index) and "Behind this model" (project pages) ---- */
+.story { margin: 40px 0 8px; padding: 22px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); max-width: 820px; }
+.story::before { content: ""; display: block; width: 56px; height: 3px; background: var(--copper); border-radius: 2px; margin-bottom: 14px; }
+.story h2 { font-size: 1.9rem; margin: 0 0 16px; }
+.story > p { line-height: 1.7; }
+.story-end { margin: 18px 0 10px; line-height: 1.7; }
+.story-sign { color: var(--copper-light); margin-top: 6px; }
+.timeline { list-style: none; margin: 0; padding: 0 0 0 16px; border-left: 2px solid var(--line); }
+.timeline > li { position: relative; margin-bottom: 22px; }
+.timeline > li:last-child { margin-bottom: 0; }
+.timeline > li::before { content: ""; position: absolute; left: -23px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--copper); }
+.timeline > li.now::before { border-color: var(--brand); background: var(--brand); }
+.timeline h3 { font-size: 1.25rem; margin: 6px 0; }
+.timeline p { line-height: 1.7; margin-bottom: 10px; }
+.tl-tag { display: inline-block; background: var(--copper-tint); color: var(--copper-light); font-size: .78rem; font-weight: 600; padding: 3px 10px; border-radius: 6px; }
+.now .tl-tag { background: rgba(228, 0, 127, .14); color: #F28BC4; }
+@media (prefers-color-scheme: light) { .now .tl-tag { color: #B0005F; background: rgba(228, 0, 127, .08); } }
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; list-style: none; padding: 0; margin: 4px 0 0; font-size: .8rem; color: var(--copper-light); }
+.flow li + li::before { content: "→"; color: var(--line-strong); margin: 0 6px 0 -2px; }
+.flow span { display: inline-block; background: var(--surface-2); border-radius: 6px; padding: 5px 9px; }
+.behind { margin-top: 24px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--copper); border-radius: 0 var(--radius) var(--radius) 0; max-width: 78ch; }
+.behind h2 { font-size: 1.3rem; margin: 0 0 6px; }
+.behind p { line-height: 1.65; margin-bottom: 10px; }
+.behind a { color: var(--copper-light); text-decoration: underline; text-underline-offset: 2px; }
+.a3 { margin: 6px 0 10px; }
+.a3 img { display: block; width: 100%; max-width: 700px; height: auto; border: 1px solid var(--line); border-radius: 8px; }
+.a3 figcaption { margin-top: 6px; font-size: .8rem; color: var(--muted); }
+
+/* ---- Views, like / dislike and Share (under the 3D model; Share also on the home page) ---- */
+.share { margin-top: 28px; }
+.share-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border: 1px solid var(--copper); border-radius: 8px; background: var(--surface); color: var(--copper-light); font: inherit; font-size: .9rem; font-weight: 600; cursor: pointer; }
+.share-btn:hover { background: var(--copper-tint); }
+.share-status { margin-top: 6px; font-size: .85rem; color: var(--muted); }
+.share-status:empty { display: none; }
+.engage { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 12px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.engage .share-status { flex-basis: 100%; margin: 0; }
+.eng-stats { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; flex: 1 1 auto; }
+.eng-views { margin-right: auto; font-size: .9rem; color: var(--muted); }
+.eng-views[hidden] { display: none; }
+.eng-views b { color: var(--heading); font-weight: 600; }
+.eng-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--text); font: inherit; cursor: pointer; }
+.eng-btn:hover { border-color: var(--line-strong); color: var(--heading); }
+.eng-btn[aria-pressed="true"] { border-color: var(--copper); background: var(--copper-tint); color: var(--copper-light); }
+.eng-btn:disabled { cursor: default; }
+.eng-btn b:empty { display: none; }
+
+/* Anchor links (e.g. "Read the full story") land below the sticky header */
+[id] { scroll-margin-top: 108px; }
+@media print { .share, .engage { display: none !important; } }
