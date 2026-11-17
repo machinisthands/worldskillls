@@ -160,8 +160,8 @@ for y in years:
         f'  <ul class="grid">\n    ' + "\n    ".join(cards) + '\n  </ul>\n</section>')
 
 home_title = "WorldSkills CNC Milling Test Projects in 3D | Machinist Hands"
-home_desc = ("All WorldSkills CNC Milling test projects from 2007 to 2019: rotate every part in 3D, "
-             "study the engineering drawings and download the PDF drawing and 3D model (.glb).")
+home_desc = (f"All WorldSkills CNC Milling test projects {years[0]}–{years[-1]}: rotate each part in 3D, "
+             "study the drawings and download the PDF and 3D model.")
 home_ld = {"@context": "https://schema.org", "@graph": [organization, website, {
     "@type": "CollectionPage", "@id": SITE_URL, "url": SITE_URL, "name": home_title, "description": home_desc,
     "isPartOf": {"@id": website["@id"]}, "inLanguage": "en",
@@ -204,8 +204,8 @@ for i, p in enumerate(projects):
     file = f"WorldSkills-{p['year']}-CNC-Milling-TP{p['project']}"
     url = SITE_URL + page_name(p)
     title = f"WorldSkills {p['year']} CNC Milling Test Project {p['project']} | Machinist Hands"
-    desc = (f"WorldSkills {p['year']} ({p['host']}) CNC Milling Test Project {p['project']}: rotate the part in 3D, "
-            f"see the top and bottom, study the engineering drawing and download the PDF and 3D model.")
+    desc = (f"WorldSkills {p['year']} ({p['host']}) CNC Milling Test Project {p['project']}: view the part in 3D, "
+            f"study the engineering drawing and download the PDF and 3D model.")
     ld = {"@context": "https://schema.org", "@graph": [organization, website,
         {"@type": "WebPage", "@id": url, "url": url, "name": title, "description": desc, "inLanguage": "en",
          "isPartOf": {"@id": website["@id"]}, "breadcrumb": {"@id": url + "#breadcrumb"},
