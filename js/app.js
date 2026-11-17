@@ -36,9 +36,9 @@
   });
 
   // ---- Views, likes and dislikes (stored in Google Firebase / Firestore) ----
-  // Fill these two values from your Firebase project (Project settings → General).
-  // While they are empty the counts simply show "–".
-  const FIREBASE = { projectId: '', apiKey: '' };
+  // Firebase project "worldskills-like-dislike-share" (Project settings → General → Your apps → website).
+  // This web API key is public by design; the Firestore security rules decide what visitors may change.
+  const FIREBASE = { projectId: 'worldskills-like-dislike-share', apiKey: 'AIzaSyBILSaQCgx9XFSYkLhdapt7p1qFu0XQfVk' };
 
   const engage = document.querySelector('.engage');
   if (engage) {
