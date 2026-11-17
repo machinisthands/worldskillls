@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://machinisthands.github.io/worldskillls/sitemap.xml
+Sitemap: https://machinisthands.github.io/worldskills/sitemap.xml

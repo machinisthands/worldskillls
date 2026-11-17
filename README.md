@@ -2,7 +2,7 @@
 
 A static website for the WorldSkills CNC Milling test projects from 2007 to 2019. Each project has an interactive 3D model, its engineering drawing and downloads.
 
-Live address (GitHub Pages): https://machinisthands.github.io/worldskillls/
+Live address (GitHub Pages): https://machinisthands.github.io/worldskills/
 
 ## How the site is made
 
@@ -24,7 +24,7 @@ After changing a template or the project list, run:
 python scripts/build.py
 ```
 
-It rewrites `index.html`, the 23 `worldskills-<year>-test-project-<n>.html` pages, `404.html`, `sitemap.xml`, `robots.txt` and the `<year> Project <n>/index.html` pages, which send the addresses of the first version of the site (for example `2007 Project 1/index.html`) to the new pages. Don't edit those generated files directly, because the next build overwrites them.
+It rewrites `index.html`, the 23 `worldskills-<year>-test-project-<n>.html` pages, `404.html`, `sitemap.xml` and `robots.txt`. Don't edit those generated files directly, because the next build overwrites them.
 
 ## Machining notes
 
@@ -74,9 +74,9 @@ Pages open by double-clicking, but the 3D model only loads from a web server:
 
 ## Publishing on GitHub Pages
 
-Push this folder to the `machinisthands/worldskillls` repository, then in GitHub: **Settings → Pages → Build and deployment → Deploy from a branch**, choose the branch and the `/ (root)` folder. The `.nojekyll` file tells GitHub to serve the files as they are.
+Push this folder to the `machinisthands/worldskills` repository, then in GitHub: **Settings → Pages → Build and deployment → Deploy from a branch**, choose the branch and the `/ (root)` folder. The `.nojekyll` file tells GitHub to serve the files as they are.
 
-After it is live, add the site in [Google Search Console](https://search.google.com/search-console) and submit `https://machinisthands.github.io/worldskillls/sitemap.xml`. If you later use your own domain, change `SITE_URL` at the top of `scripts/build.py` and run the build again.
+After it is live, add the site in [Google Search Console](https://search.google.com/search-console) and submit `https://machinisthands.github.io/worldskills/sitemap.xml`. If you later use your own domain, change `SITE_URL` at the top of `scripts/build.py` and run the build again.
 
 ## Adding a new project (for example 2024, Test Project 1)
 

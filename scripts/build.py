@@ -14,7 +14,7 @@ import os
 import re
 import sys
 
-SITE_URL = "https://machinisthands.github.io/worldskillls/"  # where the site is published (ends with /)
+SITE_URL = "https://machinisthands.github.io/worldskills/"  # where the site is published (ends with /)
 SITE_NAME = "Machinist Hands"
 BLOG_URL = "https://machinisthands.blogspot.com/"
 
@@ -256,30 +256,6 @@ if not PREVIEW:
                 '  <p class="lead">The page you were looking for does not exist or has moved.</p>\n'
                 '  <p class="lead"><a href="index.html">See all WorldSkills CNC Milling test projects →</a></p>\n</section>'))
 
-# ---------- Old addresses: "2007 Project 1/index.html" etc. from the first version of the site ----------
-# Each becomes a tiny page that sends the visitor (and search engines) to the project's new page.
-REDIRECT = """<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Moved: WorldSkills {label}</title>
-<link rel="canonical" href="{url}">
-<meta http-equiv="refresh" content="0; url=../{page}">
-<script>location.replace('../{page}' + location.hash);</script>
-</head>
-<body>
-<p>This page has moved to <a href="../{page}">WorldSkills {label}</a>.</p>
-</body>
-</html>
-"""
-if not PREVIEW:
-    for p in projects:
-        old = f"{p['year']} Project {p['project']}"
-        os.makedirs(os.path.join(OUT, old), exist_ok=True)
-        write(os.path.join(old, "index.html"),
-              REDIRECT.format(label=esc(label(p)), url=SITE_URL + page_name(p), page=page_name(p)))
-
 # ---------- sitemap.xml and robots.txt ----------
 today = datetime.date.today().isoformat()
 urls = [SITE_URL] + [SITE_URL + page_name(p) for p in projects]
@@ -287,4 +263,4 @@ write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
       + "".join(f"  <url><loc>{u}</loc><lastmod>{today}</lastmod></url>\n" for u in urls) + "</urlset>\n")
 write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}sitemap.xml\n")
-print(f"Built index.html + {len(projects)} project pages, 404.html, old-address redirects, sitemap.xml, robots.txt in {OUT}")
+print(f"Built index.html + {len(projects)} project pages, 404.html, sitemap.xml, robots.txt in {OUT}")
