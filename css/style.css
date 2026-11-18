@@ -1,6 +1,7 @@
 /* Machinist Hands — WorldSkills CNC Milling
    All colours are set once in :root below. Change them there. */
 :root {
+  --eye: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E");
   /* "Steel, Copper & Magenta" theme
      Steel grey + copper come from the Machinist Hands logo; magenta is the brand colour.
      Rule of thumb: copper = labels, years, links and download buttons;
@@ -117,6 +118,12 @@ h1 { font-size: clamp(2.1rem, 5vw, 3.2rem); }
 .card-body { position: relative; background: inherit; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; } /* sits above the zoomed picture */
 .card-body h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.55; }
 .card-body span { color: var(--copper-light); font-size: .85rem; font-weight: 600; }
+.card-body .card-views { display: inline-flex; align-items: center; gap: 5px; margin-left: auto; margin-right: 14px; color: var(--muted); font-weight: 500; }
+.card-views[hidden], .site-views[hidden] { display: none; }
+.card-views::before, .site-views::before { content: ""; width: 16px; height: 16px; background: currentColor; -webkit-mask: var(--eye) center / contain no-repeat; mask: var(--eye) center / contain no-repeat; }
+.site-views::before { width: 18px; height: 18px; }
+.site-views { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; color: var(--muted); font-size: .9rem; }
+.site-views b { color: var(--heading); font-weight: 600; }
 
 /* ---------- Project page ---------- */
 .crumbs { padding-top: 16px; font-size: .9rem; color: var(--muted); }
@@ -304,3 +311,62 @@ h1 { font-size: clamp(2.1rem, 5vw, 3.2rem); }
 /* Anchor links (e.g. "Read the full story") land below the sticky header */
 [id] { scroll-margin-top: 108px; }
 @media print { .share, .engage { display: none !important; } }
+
+/* ---- Comments: a card under the 3D model that opens a panel from the bottom (like YouTube on phones) ---- */
+.visually-hidden { border: 0; clip: rect(0, 0, 0, 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; white-space: nowrap; width: 1px; }
+.cmt-teaser { display: flex; flex-direction: column; gap: 4px; width: 100%; margin-top: 10px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+.cmt-teaser:hover { border-color: var(--line-strong); }
+.cmt-teaser-head { color: var(--heading); }
+.cmt-teaser-head .cmt-count { color: var(--muted); margin-left: 4px; }
+.cmt-teaser-text { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: .9rem; color: var(--muted); }
+html.sheet-open { overflow: hidden; }
+html.sheet-open .site-header { z-index: 310; }
+.sheet { position: fixed; inset: auto 0 0 0; z-index: 300; width: 100%; max-width: 720px; height: min(60dvh, 680px); max-height: none; margin: 0 auto; padding: 0; display: none; flex-direction: column; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-bottom: 0; border-radius: 16px 16px 0 0; box-shadow: 0 -8px 32px rgba(0, 0, 0, .35); }
+.sheet[open] { display: flex; animation: sheet-up .22s ease-out; }
+@keyframes sheet-up { from { transform: translateY(40%); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .sheet[open] { animation: none; } }
+.sheet-grip { width: 40px; height: 5px; margin: 8px auto 2px; border-radius: 3px; background: var(--line-strong); touch-action: none; }
+.sheet-head { display: flex; align-items: center; justify-content: space-between; padding: 4px 8px 8px 16px; border-bottom: 1px solid var(--line); }
+.sheet-head h2 { font-size: 1.3rem; margin: 0; }
+.sheet-head .cmt-count { color: var(--muted); font-size: 1rem; margin-left: 4px; }
+.sheet-close { display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: none; color: var(--heading); cursor: pointer; }
+.sheet-close:hover { background: var(--surface-2); }
+.sheet-close svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.sheet-body { flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; padding: 4px 16px 12px; }
+.cmt-list { list-style: none; margin: 0; padding: 0; }
+.cmt { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); border-radius: 8px; transition: background .15s; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.cmt:last-child { border-bottom: 0; }
+.cmt-avatar { flex: none; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--copper-tint); color: var(--copper-light); font-weight: 600; object-fit: cover; }
+.cmt-body { min-width: 0; }
+.cmt-meta { font-size: .8rem; color: var(--muted); margin-bottom: 2px; }
+.cmt-meta b { color: var(--heading); font-weight: 600; margin-right: 6px; }
+.cmt-text { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.55; }
+.cmt-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 6px; }
+.cmt-act { min-height: 32px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: none; color: var(--text); font: inherit; font-size: .8rem; cursor: pointer; }
+.cmt-empty, .cmt-loading { padding: 24px 0; text-align: center; color: var(--muted); }
+.sheet-foot { padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--surface); }
+.cmt-signin { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 44px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--bg); color: var(--heading); font: inherit; font-weight: 600; cursor: pointer; }
+.cmt-signin svg { width: 20px; height: 20px; }
+.cmt-form { display: flex; align-items: flex-end; gap: 10px; }
+.cmt-form[hidden] { display: none; }
+.cmt-me { width: 32px; height: 32px; border-radius: 50%; flex: none; margin-bottom: 6px; }
+.cmt-form textarea { flex: 1; min-height: 44px; max-height: 140px; padding: 10px 12px; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--bg); color: var(--heading); font: inherit; resize: vertical; }
+.cmt-form textarea:focus { outline: 2px solid var(--copper); outline-offset: 0; }
+.cmt-post { min-height: 44px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--copper); color: var(--on-copper); font: inherit; font-weight: 600; cursor: pointer; }
+.cmt-post:disabled { opacity: .6; }
+.cmt-note { margin-top: 8px; font-size: .78rem; color: var(--muted); }
+.cmt-signout { margin-left: 6px; border: 0; background: none; padding: 0; color: var(--copper-light); font: inherit; text-decoration: underline; cursor: pointer; }
+.cmt-edit { width: 100%; margin-top: 6px; padding: 8px 10px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--bg); color: var(--heading); font: inherit; resize: vertical; }
+.cmt-save { border-color: var(--copper); color: var(--copper-light); }
+.cmt-mine { background: var(--copper-tint); border-left: 3px solid var(--copper); border-radius: 0 8px 8px 0; margin: 4px -8px; padding: 12px 8px 12px 9px; border-bottom-color: transparent; }
+.cmt-you { display: inline-block; margin-right: 6px; padding: 0 6px; border-radius: 4px; background: var(--copper); color: var(--on-copper); font-size: .7rem; font-weight: 600; line-height: 1.6; }
+.cmt-picked { background: var(--surface-2); margin: 0 -8px; padding-left: 8px; padding-right: 8px; }
+.cmt-mine.cmt-picked { background: rgba(185, 128, 95, .22); }
+.cmt:focus-visible { outline: 2px solid var(--copper); outline-offset: 2px; }
+.cmt-actions[hidden] { display: none; }
+.cmt-ask { font-size: .8rem; color: var(--heading); }
+.cmt-danger { border-color: #E5484D; color: #FF8A8E; }
+@media (prefers-color-scheme: light) { .cmt-danger { color: #C62828; border-color: #C62828; } }
+.cmt-status { font-size: .85rem; color: var(--copper-light); }
+.cmt-status:empty { display: none; }
+@media print { .cmt-teaser, .sheet { display: none !important; } }

@@ -33,7 +33,34 @@
     {{share}}
     <p class="share-status" role="status"></p>
   </div>
+  <button type="button" class="cmt-teaser" aria-haspopup="dialog" aria-controls="comments">
+    <span class="cmt-teaser-head"><b>Comments</b> <span class="cmt-count"></span></span>
+    <span class="cmt-teaser-text">Ask about setups, tools or the drawing</span>
+  </button>
 </section>
+<dialog class="sheet" id="comments" aria-labelledby="cmt-title" data-page="{{page_id}}">
+  <div class="sheet-grip" aria-hidden="true"></div>
+  <header class="sheet-head">
+    <h2 id="cmt-title">Comments <span class="cmt-count"></span></h2>
+    <button type="button" class="sheet-close" aria-label="Close comments"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </header>
+  <div class="sheet-body">
+    <ol class="cmt-list cmt-all"></ol>
+    <p class="cmt-empty" hidden>No comments yet. Be the first to ask about this part.</p>
+    <p class="cmt-loading">Loading comments…</p>
+  </div>
+  <footer class="sheet-foot">
+    <button type="button" class="cmt-signin"><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.6 12.2c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8Z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.6H2.1v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7H2.1a11 11 0 0 0 0 10l3.7-2.9Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7l3.7 2.9C6.7 7.3 9.1 5.4 12 5.4Z"/></svg> Sign in with Google to comment</button>
+    <form class="cmt-form" hidden>
+      <img class="cmt-me" alt="" width="32" height="32">
+      <label class="visually-hidden" for="cmt-text">Your comment</label>
+      <textarea id="cmt-text" rows="2" maxlength="1000" placeholder="Add a comment…" required></textarea>
+      <button type="submit" class="cmt-post">Post</button>
+    </form>
+    <p class="cmt-note">Please keep it friendly: no bad words or links. <span class="cmt-hint" hidden>Long-press (or double-click) your comment to edit or delete it.</span> <button type="button" class="cmt-signout" hidden>Sign out</button></p>
+    <p class="cmt-status" role="status"></p>
+  </footer>
+</dialog>
 <section aria-labelledby="h-drawing">
   <h2 id="h-drawing" class="section-title">Engineering Drawing</h2>
   <figure class="drawing"><img src="{{drawing}}" alt="Engineering drawing of WorldSkills {{year}} CNC Milling Test Project {{project}}" width="{{drawing_w}}" height="{{drawing_h}}" loading="lazy" decoding="async"></figure>

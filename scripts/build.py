@@ -194,7 +194,9 @@ for y in years:
             + (f' srcset="{card_srcset(p)}" sizes="{CARD_SIZES}"' if card_srcset(p) else "")
             + f' alt="3D model of WorldSkills {label(p)}: top side (left) and bottom side (right)" '
             f'width="800" height="400" {loading} decoding="async">'
-            f'<div class="card-body"><h3>Test Project {p["project"]}</h3><span>View 3D →</span></div></a></li>')
+            f'<div class="card-body"><h3>Test Project {p["project"]}</h3>'
+            f'<span class="card-views" data-page="{page_name(p)[:-5]}" hidden><b></b></span>'
+            f'<span class="card-cta">View 3D →</span></div></a></li>')
     year_blocks.append(
         f'<section class="year-block" aria-labelledby="y{y}">\n'
         f'  <h2 id="y{y}" class="year-head">{y} <span>{esc(items[0]["host"])} · {len(items)} projects</span></h2>\n'
@@ -273,7 +275,7 @@ for i, p in enumerate(projects):
 
     model = asset(p, "model.js" if PREVIEW else "model.glb")
     scripts = (scripts_common + '\n<script src="js/vendor/three-bundle.min.js" defer></script>\n'
-               '<script src="js/viewer.js" defer></script>')
+               '<script src="js/viewer.js" defer></script>\n<script src="js/comments.js" defer></script>')
     write(page_name(p), fill(
         layout, title=esc(title), description=esc(desc), url=url, og_type="article",
         image=SITE_URL + asset(p, "og.jpg"), image_alt=f"3D model of WorldSkills {label(p)}, top and bottom",
