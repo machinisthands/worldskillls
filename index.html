@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://apis.google.com https://www.gstatic.com; style-src 'self' 'sha256-Oo9QlvNgChKrTLzf8sqNyZ65HtANbhieRZTWBUDGHCo='; img-src 'self' data: blob: https://*.googleusercontent.com https://www.google.com https://www.gstatic.com; font-src 'self'; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.googleapis.com; frame-src https://worldskills-like-dislike-share.firebaseapp.com https://apis.google.com https://accounts.google.com; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WorldSkills CNC Milling Test Projects in 3D | Machinist Hands</title>
 <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -138,9 +140,9 @@
 </main>
 <footer class="site-footer">
   <p>Test projects are the property of WorldSkills International and are shared here for training and educational use.
-    <a href="https://machinisthands.blogspot.com/p/disclaimer.html">Disclaimer</a> ·
-    <a href="https://machinisthands.blogspot.com/p/privacy-and-policy-machinist-hands.html">Privacy Policy</a></p>
-  <p>Copyright © <span id="year-now">2026</span> <a href="https://machinisthands.blogspot.com/">Machinist Hands</a></p>
+    <a href="https://machinisthands.blogspot.com/p/disclaimer.html" rel="noopener">Disclaimer</a> ·
+    <a href="https://machinisthands.blogspot.com/p/privacy-and-policy-machinist-hands.html" rel="noopener privacy-policy">Privacy Policy</a></p>
+  <p>Copyright © <span id="year-now">2026</span> <a href="https://machinisthands.blogspot.com/" rel="noopener">Machinist Hands</a></p>
 </footer>
 <script src="js/app.js" defer></script>
 </body>

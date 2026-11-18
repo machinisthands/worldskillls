@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://apis.google.com https://www.gstatic.com; style-src 'self' 'sha256-Oo9QlvNgChKrTLzf8sqNyZ65HtANbhieRZTWBUDGHCo='; img-src 'self' data: blob: https://*.googleusercontent.com https://www.google.com https://www.gstatic.com; font-src 'self'; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.googleapis.com; frame-src https://worldskills-like-dislike-share.firebaseapp.com https://apis.google.com https://accounts.google.com; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WorldSkills 2017 CNC Milling Test Project 2 | Machinist Hands</title>
 <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -128,7 +130,7 @@
     <li><a class="dl" href="projects/2017-2/drawing.pdf" download="WorldSkills-2017-CNC-Milling-TP2.pdf"><span class="dl-badge">PDF</span><span class="dl-text"><b>Engineering drawing</b><small>PDF · 979 KB</small></span><span class="dl-arrow" aria-hidden="true">↓</span></a></li>
     <li><a class="dl" href="projects/2017-2/model.glb" download="WorldSkills-2017-CNC-Milling-TP2.glb"><span class="dl-badge">3D</span><span class="dl-text"><b>3D model</b><small>GLB · 181 KB</small></span><span class="dl-arrow" aria-hidden="true">↓</span></a></li>
   </ul>
-  <p class="dl-note">The 3D model is a compressed glTF (.glb) file. It opens in Blender, the online <a href="https://gltf-viewer.donmccurdy.com/">glTF Viewer</a> and most 3D apps.</p>
+  <p class="dl-note">The 3D model is a compressed glTF (.glb) file. It opens in Blender, the online <a href="https://gltf-viewer.donmccurdy.com/" rel="noopener noreferrer">glTF Viewer</a> and most 3D apps.</p>
 </section>
 <nav class="pager" aria-label="Previous and next project">
 <a class="pager-link prev" href="worldskills-2017-test-project-1.html" rel="prev"><span class="pager-arrow" aria-hidden="true">←</span><img src="projects/2017-1/top.jpg" alt="" width="48" height="48" loading="lazy" decoding="async"><span class="pager-text"><small>Previous</small><b>2017 · TP 1</b></span></a>
@@ -138,9 +140,9 @@
 </main>
 <footer class="site-footer">
   <p>Test projects are the property of WorldSkills International and are shared here for training and educational use.
-    <a href="https://machinisthands.blogspot.com/p/disclaimer.html">Disclaimer</a> ·
-    <a href="https://machinisthands.blogspot.com/p/privacy-and-policy-machinist-hands.html">Privacy Policy</a></p>
-  <p>Copyright © <span id="year-now">2026</span> <a href="https://machinisthands.blogspot.com/">Machinist Hands</a></p>
+    <a href="https://machinisthands.blogspot.com/p/disclaimer.html" rel="noopener">Disclaimer</a> ·
+    <a href="https://machinisthands.blogspot.com/p/privacy-and-policy-machinist-hands.html" rel="noopener privacy-policy">Privacy Policy</a></p>
+  <p>Copyright © <span id="year-now">2026</span> <a href="https://machinisthands.blogspot.com/" rel="noopener">Machinist Hands</a></p>
 </footer>
 <script src="js/app.js" defer></script>
 <script src="js/vendor/three-bundle.min.js" defer></script>

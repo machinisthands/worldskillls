@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="{{csp}}">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{title}}</title>
 {{base}}<link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -41,9 +43,9 @@
 </main>
 <footer class="site-footer">
   <p>Test projects are the property of WorldSkills International and are shared here for training and educational use.
-    <a href="https://machinisthands.blogspot.com/p/disclaimer.html">Disclaimer</a> ·
-    <a href="https://machinisthands.blogspot.com/p/privacy-and-policy-machinist-hands.html">Privacy Policy</a></p>
-  <p>Copyright © <span id="year-now">{{build_year}}</span> <a href="https://machinisthands.blogspot.com/">Machinist Hands</a></p>
+    <a href="https://machinisthands.blogspot.com/p/disclaimer.html" rel="noopener">Disclaimer</a> ·
+    <a href="https://machinisthands.blogspot.com/p/privacy-and-policy-machinist-hands.html" rel="noopener privacy-policy">Privacy Policy</a></p>
+  <p>Copyright © <span id="year-now">{{build_year}}</span> <a href="https://machinisthands.blogspot.com/" rel="noopener">Machinist Hands</a></p>
 </footer>
 {{scripts}}
 </body>

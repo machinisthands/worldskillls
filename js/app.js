@@ -2,6 +2,11 @@
 (function () {
   'use strict';
 
+  // Clickjacking guard: GitHub Pages cannot send X-Frame-Options, so leave any frame another site puts us in.
+  if (window.top !== window.self) {
+    try { window.top.location.replace(window.location.href); } catch (e) { document.documentElement.hidden = true; }
+  }
+
   // Footer year follows the visitor's clock (the page already shows the build year without JavaScript).
   document.getElementById('year-now').textContent = new Date().getFullYear();
 

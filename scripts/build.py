@@ -7,7 +7,9 @@ It writes index.html, one worldskills-<year>-test-project-<n>.html per project, 
 Do not edit those generated files by hand; edit templates/*.html or data/projects.json and run this again.
 (Needs only Python 3, no packages.)
 """
+import base64
 import datetime
+import hashlib
 import html
 import json
 import os
@@ -156,7 +158,27 @@ def inline_css():
 projects = json.loads(read("data", "projects.json"))
 years = sorted({p["year"] for p in projects})
 medallists = json.loads(read("data", "medallists.json"))
-layout = read("templates", "layout.html").replace("{{css}}", "<style>" + inline_css() + "</style>")
+CSS = inline_css()
+# Content Security Policy (GitHub Pages cannot send headers, so it goes in a <meta> tag).
+# The inline <style> is allowed by its hash; scripts only from this site, plus Google's sign-in scripts.
+FIREBASE_AUTH_DOMAIN = "worldskills-like-dislike-share.firebaseapp.com"
+CSP = "; ".join([
+    "default-src 'self'",
+    "script-src 'self' 'wasm-unsafe-eval' https://apis.google.com https://www.gstatic.com",
+    "style-src 'self' 'sha256-" + base64.b64encode(hashlib.sha256(CSS.encode()).digest()).decode() + "'",
+    "img-src 'self' data: blob: https://*.googleusercontent.com https://www.google.com https://www.gstatic.com",
+    "font-src 'self'",
+    "connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com "
+    "https://securetoken.googleapis.com https://www.googleapis.com",
+    f"frame-src https://{FIREBASE_AUTH_DOMAIN} https://apis.google.com https://accounts.google.com",
+    "worker-src 'self' blob:",
+    "manifest-src 'self'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'none'",
+    "upgrade-insecure-requests",
+])
+layout = read("templates", "layout.html").replace("{{css}}", "<style>" + CSS + "</style>").replace("{{csp}}", CSP)
 build_year = datetime.date.today().year
 organization = {"@type": "Organization", "@id": BLOG_URL + "#org", "name": SITE_NAME, "url": BLOG_URL,
                 "logo": SITE_URL + "icon-512.png"}
