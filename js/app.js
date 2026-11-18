@@ -58,7 +58,11 @@
   });
   const local = store(window.localStorage), session = store(window.sessionStorage);
   // One view per page per browser session
-  const firstView = (id) => !session.get(`viewed:${id}`) && (session.set(`viewed:${id}`, '1'), true);
+  const firstView = (id) => {
+    if (session.get(`viewed:${id}`)) return false;
+    session.set(`viewed:${id}`, '1');
+    return true;
+  };
   window.MH = { FIREBASE, DOCS, API, post };
 
   // Home page: visits of the home page, and views of each project on its card (one request for all)

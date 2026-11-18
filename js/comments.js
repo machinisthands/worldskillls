@@ -15,7 +15,7 @@
   const { FIREBASE, DOCS, API, post } = window.MH;
   const page = sheet.dataset.page;
   const $ = (s) => sheet.querySelector(s);
-  const list = $('.cmt-all');
+  const list = $('.cmt-list');
   const form = $('.cmt-form');
   const text = $('#cmt-text');
   const say = (m) => { $('.cmt-status').textContent = m || ''; };
