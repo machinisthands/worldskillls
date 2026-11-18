@@ -1,0 +1,78 @@
+rules_version = '2';
+// Firestore security rules for machinisthands.github.io/worldskills
+// Paste into Firebase console → Firestore → Rules → Publish. Replace OWNER_EMAIL with the site owner's Google e-mail.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isOwner() {
+      return request.auth != null && request.auth.token.email == 'OWNER_EMAIL'
+        && request.auth.token.email_verified == true;
+    }
+    function validPage(p) {
+      return p is string && p.matches('index|worldskills-[0-9]{4}-test-project-[0-9]');
+    }
+
+    // ---- Views, likes, dislikes: +1 view; +1/-1 like or dislike; or switch like <-> dislike. Never below 0.
+    match /pages/{page} {
+      function before(k) { return resource == null ? 0 : resource.data.get(k, 0); }
+      function after(k) { return request.resource.data.get(k, 0); }
+      function delta(k) { return after(k) - before(k); }
+      function changed() {
+        return resource == null
+          ? request.resource.data.keys().toSet()
+          : request.resource.data.diff(resource.data).affectedKeys();
+      }
+      function valuesOk() {
+        return request.resource.data.keys().hasOnly(['views', 'likes', 'dislikes'])
+          && after('views') is int && after('likes') is int && after('dislikes') is int
+          && after('views') >= 0 && after('likes') >= 0 && after('dislikes') >= 0;
+      }
+      function allowedChange() {
+        let c = changed();
+        return (c.size() == 1 && c.hasOnly(['views']) && delta('views') == 1)
+          || (c.size() == 1 && c.hasOnly(['likes']) && (delta('likes') == 1 || delta('likes') == -1))
+          || (c.size() == 1 && c.hasOnly(['dislikes']) && (delta('dislikes') == 1 || delta('dislikes') == -1))
+          || (c.size() == 2 && c.hasOnly(['likes', 'dislikes'])
+              && ((delta('likes') == 1 && delta('dislikes') == -1)
+                || (delta('likes') == -1 && delta('dislikes') == 1)));
+      }
+      allow read: if true;
+      allow create, update: if validPage(page) && valuesOk() && allowedChange();
+      allow delete: if false;
+    }
+
+    // ---- Comments: anyone can read; signed-in Google users can write, edit and delete their own;
+    //      the owner can delete any. No links, no bad words.
+    match /comments/{id} {
+      function textOk(t) {
+        // 2–1000 characters, no links, none of the blocked words (same list as js/comments.js)
+        return t is string && t.size() >= 2 && t.size() <= 1000
+          && !t.lower().matches('(?s).*(https?:|www[.]).*')
+          && !t.lower().matches('(?s).*(f+[\\W_]*u+[\\W_]*c+[\\W_]*k|\\bf+[\\W_]*c+[\\W_]*k|\\bfuk|\\bphuck|motherf|\\bsh[i1!]+t|b[i1!]+tch|bastard|a[s$5]{2}hole|\\bcunt|\\bdick(head)?\\b|\\bpussy|\\bslut|\\bwhore|\\bnigg|\\bfag(got)?s?\\b|\\bretard|\\bporn|\\bwtf\\b|\\bmy[iy]?re?\\b|\\bmyr[eu]|\\bmay[iy]r|\\bpooru|\\bpoorimon|\\bkunna\\b|\\bkunne\\b|tha+yo+l+i|pundach|koothich|kazhuver|p[ou]layaa?di|\\boomb|\\bumbi\\b|n[a]+y[iy]nte\\s*mon|theetam|\\bthendi\\b|മൈര|മയിര|പൂറ|കുണ്ണ|തായോളി|പുണ്ടച്ചി|കൂത്തിച്ചി|കഴുവേറി|പൊലയാടി|പുലയാടി|ഊമ്പ|നായിന്റെ മോ|തെണ്ടി|തീട്ടം).*');
+      }
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.resource.data.keys().hasOnly(['page', 'text', 'name', 'photo', 'uid', 'created'])
+        && request.resource.data.keys().hasAll(['page', 'text', 'name', 'uid', 'created'])
+        && request.resource.data.uid == request.auth.uid
+        // name and photo must be the signed-in Google account's own (cannot pretend to be someone else)
+        && request.resource.data.name == request.auth.token.get('name', 'Visitor')
+        && request.resource.data.get('photo', '') == request.auth.token.get('picture', '')
+        && request.resource.data.created == request.time
+        && validPage(request.resource.data.page)
+        && textOk(request.resource.data.text);
+      // The writer may change only the text (same checks); "edited" is set to the time of the change.
+      allow update: if request.auth != null && resource.data.uid == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['text', 'edited'])
+        && request.resource.data.edited == request.time
+        && textOk(request.resource.data.text);
+      allow delete: if isOwner() || (request.auth != null && resource.data.uid == request.auth.uid);
+    }
+
+    // Lets the page find out whether the site owner is signed in (only the owner may read it).
+    match /meta/{doc} {
+      allow read: if isOwner();
+      allow write: if false;
+    }
+  }
+}
